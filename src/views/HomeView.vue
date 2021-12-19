@@ -36,6 +36,7 @@ export default {
           markDirection: '1', //0:北上、1:南下
         },
       ],
+      isDev: this.isDev,
     };
   },
   mounted() {
@@ -43,132 +44,136 @@ export default {
   },
   methods: {
     loadStationData: function () {
+      let isDev = this.isDev;
       this.stationDataAry.forEach(function (elem) {
         //因call api用次數限制, 開發時用假資料
-        // let data = [
-        //   {
-        //     StationID: '1070',
-        //     StationName: {
-        //       Zh_tw: '鶯歌',
-        //       En: 'Yingge',
-        //     },
-        //     TrainNo: '513',
-        //     Direction: 1,
-        //     TrainTypeID: '1110',
-        //     TrainTypeCode: '4',
-        //     TrainTypeName: {
-        //       Zh_tw: '莒光(無身障座位)',
-        //       En: 'Chu-Kuang Express',
-        //     },
-        //     TripLine: 2,
-        //     EndingStationID: '5050',
-        //     EndingStationName: {
-        //       Zh_tw: '潮州',
-        //       En: 'Chaozhou',
-        //     },
-        //     ScheduledArrivalTime: '11:44:00',
-        //     ScheduledDepartureTime: '11:45:00',
-        //     DelayTime: 0,
-        //     SrcUpdateTime: '2021-12-19T11:39:36+08:00',
-        //     UpdateTime: '2021-12-19T11:40:14+08:00',
-        //   },
-        //   {
-        //     StationID: '1070',
-        //     StationName: {
-        //       Zh_tw: '鶯歌',
-        //       En: 'Yingge',
-        //     },
-        //     TrainNo: '1172',
-        //     Direction: 0,
-        //     TrainTypeID: '1131',
-        //     TrainTypeCode: '6',
-        //     TrainTypeName: {
-        //       Zh_tw: '區間',
-        //       En: 'Local Train',
-        //     },
-        //     TripLine: 0,
-        //     EndingStationID: '0900',
-        //     EndingStationName: {
-        //       Zh_tw: '基隆',
-        //       En: 'Keelung',
-        //     },
-        //     ScheduledArrivalTime: '11:53:00',
-        //     ScheduledDepartureTime: '11:54:00',
-        //     DelayTime: 6,
-        //     SrcUpdateTime: '2021-12-19T11:38:36+08:00',
-        //     UpdateTime: '2021-12-19T11:40:14+08:00',
-        //   },
-        //   {
-        //     StationID: '1070',
-        //     StationName: {
-        //       Zh_tw: '鶯歌',
-        //       En: 'Yingge',
-        //     },
-        //     TrainNo: '1167',
-        //     Direction: 1,
-        //     TrainTypeID: '1131',
-        //     TrainTypeCode: '6',
-        //     TrainTypeName: {
-        //       Zh_tw: '區間',
-        //       En: 'Local Train',
-        //     },
-        //     TripLine: 0,
-        //     EndingStationID: '1150',
-        //     EndingStationName: {
-        //       Zh_tw: '北湖',
-        //       En: 'Beihu',
-        //     },
-        //     ScheduledArrivalTime: '11:57:00',
-        //     ScheduledDepartureTime: '11:58:00',
-        //     DelayTime: 0,
-        //     SrcUpdateTime: '2021-12-19T11:37:16+08:00',
-        //     UpdateTime: '2021-12-19T11:40:14+08:00',
-        //   },
-        //   {
-        //     StationID: '1070',
-        //     StationName: {
-        //       Zh_tw: '鶯歌',
-        //       En: 'Yingge',
-        //     },
-        //     TrainNo: '1178',
-        //     Direction: 0,
-        //     TrainTypeID: '1131',
-        //     TrainTypeCode: '6',
-        //     TrainTypeName: {
-        //       Zh_tw: '區間',
-        //       En: 'Local Train',
-        //     },
-        //     TripLine: 1,
-        //     EndingStationID: '0900',
-        //     EndingStationName: {
-        //       Zh_tw: '基隆',
-        //       En: 'Keelung',
-        //     },
-        //     ScheduledArrivalTime: '12:07:00',
-        //     ScheduledDepartureTime: '12:08:00',
-        //     DelayTime: 0,
-        //     SrcUpdateTime: '2021-12-19T11:39:48+08:00',
-        //     UpdateTime: '2021-12-19T11:40:14+08:00',
-        //   },
-        // ];
-        // elem['trainInfo'] = data;
-        axios
-          .get(
-            'https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/LiveBoard/Station/' +
-              elem.stationId +
-              '?$top=1000&$format=JSON'
-          )
-          .then(function (response) {
-            // handle success
-            elem['trainInfo'] = JSON.parse(response.request.response);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function () {
-            // always executed
-          });
+        if (isDev) {
+          let data = [
+            {
+              StationID: '1070',
+              StationName: {
+                Zh_tw: '鶯歌',
+                En: 'Yingge',
+              },
+              TrainNo: '513',
+              Direction: 1,
+              TrainTypeID: '1110',
+              TrainTypeCode: '4',
+              TrainTypeName: {
+                Zh_tw: '莒光(無身障座位)',
+                En: 'Chu-Kuang Express',
+              },
+              TripLine: 2,
+              EndingStationID: '5050',
+              EndingStationName: {
+                Zh_tw: '潮州',
+                En: 'Chaozhou',
+              },
+              ScheduledArrivalTime: '11:44:00',
+              ScheduledDepartureTime: '11:45:00',
+              DelayTime: 0,
+              SrcUpdateTime: '2021-12-19T11:39:36+08:00',
+              UpdateTime: '2021-12-19T11:40:14+08:00',
+            },
+            {
+              StationID: '1070',
+              StationName: {
+                Zh_tw: '鶯歌',
+                En: 'Yingge',
+              },
+              TrainNo: '1172',
+              Direction: 0,
+              TrainTypeID: '1131',
+              TrainTypeCode: '6',
+              TrainTypeName: {
+                Zh_tw: '區間',
+                En: 'Local Train',
+              },
+              TripLine: 0,
+              EndingStationID: '0900',
+              EndingStationName: {
+                Zh_tw: '基隆',
+                En: 'Keelung',
+              },
+              ScheduledArrivalTime: '11:53:00',
+              ScheduledDepartureTime: '11:54:00',
+              DelayTime: 6,
+              SrcUpdateTime: '2021-12-19T11:38:36+08:00',
+              UpdateTime: '2021-12-19T11:40:14+08:00',
+            },
+            {
+              StationID: '1070',
+              StationName: {
+                Zh_tw: '鶯歌',
+                En: 'Yingge',
+              },
+              TrainNo: '1167',
+              Direction: 1,
+              TrainTypeID: '1131',
+              TrainTypeCode: '6',
+              TrainTypeName: {
+                Zh_tw: '區間',
+                En: 'Local Train',
+              },
+              TripLine: 0,
+              EndingStationID: '1150',
+              EndingStationName: {
+                Zh_tw: '北湖',
+                En: 'Beihu',
+              },
+              ScheduledArrivalTime: '11:57:00',
+              ScheduledDepartureTime: '11:58:00',
+              DelayTime: 0,
+              SrcUpdateTime: '2021-12-19T11:37:16+08:00',
+              UpdateTime: '2021-12-19T11:40:14+08:00',
+            },
+            {
+              StationID: '1070',
+              StationName: {
+                Zh_tw: '鶯歌',
+                En: 'Yingge',
+              },
+              TrainNo: '1178',
+              Direction: 0,
+              TrainTypeID: '1131',
+              TrainTypeCode: '6',
+              TrainTypeName: {
+                Zh_tw: '區間',
+                En: 'Local Train',
+              },
+              TripLine: 1,
+              EndingStationID: '0900',
+              EndingStationName: {
+                Zh_tw: '基隆',
+                En: 'Keelung',
+              },
+              ScheduledArrivalTime: '12:07:00',
+              ScheduledDepartureTime: '12:08:00',
+              DelayTime: 0,
+              SrcUpdateTime: '2021-12-19T11:39:48+08:00',
+              UpdateTime: '2021-12-19T11:40:14+08:00',
+            },
+          ];
+          elem['trainInfo'] = data;
+        } else {
+          axios
+            .get(
+              'https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/LiveBoard/Station/' +
+                elem.stationId +
+                '?$top=1000&$format=JSON'
+            )
+            .then(function (response) {
+              // handle success
+              elem['trainInfo'] = JSON.parse(response.request.response);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
+        }
       });
     },
   },
