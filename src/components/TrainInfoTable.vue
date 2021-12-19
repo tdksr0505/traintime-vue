@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: "TrainInfoTable",
+  name: 'TrainInfoTable',
   data() {
     return {};
   },
@@ -58,20 +58,20 @@ export default {
   methods: {
     getDelayTime: (delayTime) => {
       if (delayTime == 0) {
-        return "準點";
+        return '準點';
       } else {
-        return delayTime + " min";
+        return delayTime + ' min';
       }
     },
     getDirection: (dirction) => {
       if (dirction == 0) {
-        return "北上";
+        return '北上';
       } else {
-        return "南下";
+        return '南下';
       }
     },
     getTime: (timeStr) => {
-      return timeStr.replace(/(:\d{2}| [AP]M)$/, "");
+      return timeStr.replace(/(:\d{2}| [AP]M)$/, '');
     },
   },
 };
@@ -100,7 +100,7 @@ export default {
       }
       .t-cell {
         &:before {
-          content: attr(data-title) "： ";
+          content: attr(data-title) '： ';
           display: inline-block;
           color: #0a5078;
           @media screen and (min-width: 992px) {
