@@ -1,43 +1,34 @@
 <template>
-  <metainfo>
-    <template v-slot:title="{ content }">{{ `${content}` }}</template>
-  </metainfo>
-  <router-view />
+    <router-view />
 </template>
 <script>
-import { useMeta } from 'vue-meta';
 export default {
-  data() {
-    return {};
-  },
-  setup() {
-    useMeta({
-      title: '火車動態時刻',
-      htmlAttrs: { lang: 'en', amp: true },
-    });
-  },
+    data() {
+        return {};
+    },
+    setup() {},
 };
 </script>
 
 <style lang="scss">
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 body {
-  box-sizing: border-box;
-  font-family: 'Arial', 'Microsoft JhengHei';
-  font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Arial', 'Microsoft JhengHei';
+    font-size: 16px;
 }
 .container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: auto;
-  @media screen and (min-width: 992px) {
-    width: 970px;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 1170px;
-  }
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: auto;
+    @media screen and (min-width: 992px) {
+        width: 970px;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 1170px;
+    }
 }
 </style>
