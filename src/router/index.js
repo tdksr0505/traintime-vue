@@ -7,7 +7,7 @@ const routes = [
         name: 'home',
         component: HomeView,
         meta: {
-            title: '火車動態時刻x',
+            title: '火車動態時刻',
         },
     },
 ];
